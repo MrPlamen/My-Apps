@@ -1,3 +1,6 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
 .calculator {
     display: grid;
     width: 460px;
@@ -12,13 +15,21 @@
         ". . . ."
         ". . . ."
         ". . . ."
-        ". . equals equals";
+        "zero zero . .";
     border: 1px solid black;
     border-radius: 14px;
 }
 #calc-screen {
     grid-area: screen;
+    resize: none;
+    margin-top: 12px;
+    margin-bottom: 24px;
 }
-.btn-equals {
-    grid-area: equals;
+button {
+    font-weight: 600;
+    font-size: x-large;
+    border-radius: 8px;
+}
+.btn-zero {
+    grid-area: zero;
 }
