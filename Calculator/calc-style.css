@@ -1,0 +1,24 @@
+.calculator {
+    display: grid;
+    width: 460px;
+    height: 700px;
+    padding: 24px;
+    gap: 16px;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(6, 100px);
+    grid-template-areas: 
+        "screen screen screen screen"
+        ". . . ."
+        ". . . ."
+        ". . . ."
+        ". . . ."
+        ". . equals equals";
+    border: 1px solid black;
+    border-radius: 14px;
+}
+#calc-screen {
+    grid-area: screen;
+}
+.btn-equals {
+    grid-area: equals;
+}
