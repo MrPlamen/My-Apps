@@ -23,7 +23,6 @@ function Calculator() {
                 trigger = true;
                 if (btn.classList === 'hero btn-equals') {
                     getResult(lastOperation, tempMemory, memory, result, screen);
-                    console.log(result);
                     screen.textContent = result;
                     tempMemory = '';
                 } else {
