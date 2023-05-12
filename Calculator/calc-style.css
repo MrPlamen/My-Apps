@@ -26,6 +26,7 @@ body {
     margin-top: 12px;
     margin-bottom: 24px;
     text-align: right;
+    background-color: azure;
 }
 button {
     font-weight: 600;
