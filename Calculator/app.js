@@ -12,7 +12,7 @@ function Calculator() {
         btn.addEventListener("click", function () {
             if (trigger) {
                 screen.textContent = '';
-                trigger = false;
+                trigger = true;
             }
 
             if (btn.textContent === 'C') {
