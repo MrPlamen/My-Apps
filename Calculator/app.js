@@ -5,7 +5,8 @@ function Calculator() {
     let memory = '';
     let tempMemory = '';
     let trigger = false;
-    let lastInput = [];
+    let oneTimeTrigger = false;
+    let lastOperation = [];
     const numbers = [1,2,3,4,5,6,7,8,9,0];
     let result;
 
@@ -21,17 +22,23 @@ function Calculator() {
                 memory = '';
                 tempMemory = '';
             } else if (btn.classList.contains('btn-equals')) {
-                getResult(lastInput, tempMemory, memory, result, screen);
+                getResult(lastOperation, tempMemory, memory, result, screen);
                 console.log(result);
                 screen.textContent = result;
                 tempMemory = '';
             } else {
-                tempMemory = memory;
-                lastInput.push(btn.textContent);
+                if (numbers.contains(btn.textContent) && oneTimeTrigger) {
+                    tempMemory+=btn.textContent;
+                } else if (numbers.contains(btn.textContent) && !oneTimeTrigger) {
+                    memory+=btn.textContent;
+                } else {
+                    lastOperation.push(btn.textContent);
+                }
                 screen.textContent += btn.textContent;
             }
             if (btn.classList.contains('hero')) {
                 trigger = true;
+                oneTimeTrigger;
             }
             memory += (btn.textContent);
 
@@ -40,14 +47,14 @@ function Calculator() {
         });
     }
 
-    function getResult(lastInput, tempMemory, memory, result, screen) {
-        lastInput.pop();
+    function getResult(lastOperation, tempMemory, memory, result, screen) {
+        lastOperation.pop();
         let lastOperation = '';
         screen.textContent = '';
 
-        // for (let i=lastInput.length-1; i<=0; i--) {
-        //     if (!numbers.contains(lastInput[i])) {
-        //         lastOperation = lastInput[i];
+        // for (let i=lastOperation.length-1; i<=0; i--) {
+        //     if (!numbers.contains(lastOperation[i])) {
+        //         lastOperation = lastOperation[i];
         //         break;
         //     }
         // }
