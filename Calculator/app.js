@@ -20,7 +20,6 @@ function Calculator() {
                 memory = '';
             } else if (btn.classList.contains('btn-equals')) {
                 getResult(lastOperation, tempMemory, memory, result, screen);
-                console.log(result);
                 screen.textContent = result;
                 tempMemory = '';
             } else {
