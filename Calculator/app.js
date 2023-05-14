@@ -5,9 +5,9 @@ function Calculator() {
     let memory = '';
     let tempMemory = '';
     let trigger = false;
-    let oneTimeTrigger = false;
+    let tempTrigger = false;
     let lastOperation = [];
-    const numbers = [1,2,3,4,5,6,7,8,9,0];
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
     let result;
 
     for (let btn of buttons) {
@@ -23,14 +23,16 @@ function Calculator() {
                 tempMemory = '';
             } else if (btn.classList.contains('btn-equals')) {
                 getResult(lastOperation, tempMemory, memory, result, screen);
-                console.log(result);
+                console.log(Number(memory)+Number(tempMemory));
                 screen.textContent = result;
-                tempMemory = '';
             } else {
-                if (numbers.contains(btn.textContent) && oneTimeTrigger) {
-                    tempMemory+=btn.textContent;
-                } else if (numbers.contains(btn.textContent) && !oneTimeTrigger) {
-                    memory+=btn.textContent;
+                if (numbers.includes(Number(btn.textContent)) && tempTrigger) {
+                    tempMemory += (btn.textContent);
+                    tempTrigger = false;
+                } else if (numbers.includes(Number(btn.textContent)) && !tempTrigger) {
+                    memory += (btn.textContent);
+                    // console.log(memory);
+                    // console.log(tempMemory);
                 } else {
                     lastOperation.push(btn.textContent);
                 }
@@ -38,22 +40,20 @@ function Calculator() {
             }
             if (btn.classList.contains('hero')) {
                 trigger = true;
-                oneTimeTrigger;
+                tempTrigger = true;
             }
-            memory += (btn.textContent);
-
-            console.log(memory);
-            console.log(tempMemory);
         });
     }
+ 
+    console.log(memory);
+    console.log(tempMemory);
 
     function getResult(lastOperation, tempMemory, memory, result, screen) {
         lastOperation.pop();
-        let lastOperation = '';
         screen.textContent = '';
 
         // for (let i=lastOperation.length-1; i<=0; i--) {
-        //     if (!numbers.contains(lastOperation[i])) {
+        //     if (!numbers.includes(lastOperation[i])) {
         //         lastOperation = lastOperation[i];
         //         break;
         //     }
