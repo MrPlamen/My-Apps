@@ -39,6 +39,7 @@ function Calculator() {
 
     function getResult(lastOperation, tempMemory, memory, result, screen) {
         let currentInput = screen.textContent;
+        lastOperation.pop();
         screen.textContent = '';
 
         switch (lastOperation.pop()) {
