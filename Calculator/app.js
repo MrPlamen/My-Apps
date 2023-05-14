@@ -5,7 +5,7 @@ function Calculator() {
     let memory = '';
     let tempMemory = '';
     let trigger = false;
-    let lastOperation = [];
+    let lastInput = [];
     let result;
 
     for (let btn of buttons) {
@@ -19,12 +19,13 @@ function Calculator() {
                 screen.textContent = '';
                 memory = '';
             } else if (btn.classList.contains('btn-equals')) {
-                getResult(lastOperation, tempMemory, memory, result, screen);
+                getResult(lastInput, tempMemory, memory, result, screen);
+                console.log(result);
                 screen.textContent = result;
                 tempMemory = '';
             } else {
                 tempMemory = memory;
-                lastOperation.push(btn.textContent);
+                lastInput.push(btn.textContent);
                 screen.textContent += btn.textContent;
             }
             if (btn.classList.contains('hero')) {
@@ -33,23 +34,29 @@ function Calculator() {
             memory += (btn.textContent);
 
             console.log(result);
-            console.log(lastOperation);
+            console.log(lastInput);
         });
     }
 
-    function getResult(lastOperation, tempMemory, memory, result, screen) {
-        let currentInput = screen.textContent;
-        lastOperation.pop();
+    function getResult(lastInput, tempMemory, memory, result, screen) {
+        lastInput.pop();
+        const numbers = [1,2,3,4,5,6,7,8,9,0];
+        let lastOperation = '';
         screen.textContent = '';
 
-        switch (lastOperation.pop()) {
-            case '+':
-                result = 666;
+        for (let i=lastInput.length-1; i<=0; i--) {
+            if (!numbers.contains(lastInput[i])) {
+                lastOperation = lastInput[i];
                 break;
+            }
+        }
+
+        switch (lastOperation) {
+            case '+':
+                return 666;
             default:
                 break;
         }
-        return result;
     }
 }
 
