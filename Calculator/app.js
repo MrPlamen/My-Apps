@@ -18,20 +18,20 @@ function Calculator() {
             if (btn.textContent === 'C') {
                 screen.textContent = '';
                 memory = '';
+            } else if (btn.classList.contains('btn-equals')) {
+                getResult(lastOperation, tempMemory, memory, result, screen);
+                console.log(result);
+                screen.textContent = result;
+                tempMemory = '';
+            } else {
+                tempMemory = memory;
+                lastOperation.push(btn.textContent);
+                screen.textContent += btn.textContent;
             }
             if (btn.classList.contains('hero')) {
                 trigger = true;
-                if (btn.classList === 'hero btn-equals') {
-                    getResult(lastOperation, tempMemory, memory, result, screen);
-                    screen.textContent = result;
-                    tempMemory = '';
-                } else {
-                    tempMemory = memory;
-                    lastOperation.push(btn.textContent);
-                }
             }
             memory += (btn.textContent);
-            screen.textContent += btn.textContent;
 
             console.log(result);
             console.log(lastOperation);
@@ -52,8 +52,6 @@ function Calculator() {
         return result;
     }
 }
-
-Calculator()
 
 
 Calculator();
