@@ -6,6 +6,7 @@ function Calculator() {
     let tempMemory = '';
     let trigger = false;
     let lastInput = [];
+    const numbers = [1,2,3,4,5,6,7,8,9,0];
     let result;
 
     for (let btn of buttons) {
@@ -18,6 +19,7 @@ function Calculator() {
             if (btn.textContent === 'C') {
                 screen.textContent = '';
                 memory = '';
+                tempMemory = '';
             } else if (btn.classList.contains('btn-equals')) {
                 getResult(lastInput, tempMemory, memory, result, screen);
                 console.log(result);
@@ -33,23 +35,22 @@ function Calculator() {
             }
             memory += (btn.textContent);
 
-            console.log(result);
-            console.log(lastInput);
+            console.log(memory);
+            console.log(tempMemory);
         });
     }
 
     function getResult(lastInput, tempMemory, memory, result, screen) {
         lastInput.pop();
-        const numbers = [1,2,3,4,5,6,7,8,9,0];
         let lastOperation = '';
         screen.textContent = '';
 
-        for (let i=lastInput.length-1; i<=0; i--) {
-            if (!numbers.contains(lastInput[i])) {
-                lastOperation = lastInput[i];
-                break;
-            }
-        }
+        // for (let i=lastInput.length-1; i<=0; i--) {
+        //     if (!numbers.contains(lastInput[i])) {
+        //         lastOperation = lastInput[i];
+        //         break;
+        //     }
+        // }
 
         switch (lastOperation) {
             case '+':
