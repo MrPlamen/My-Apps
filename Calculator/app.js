@@ -8,7 +8,7 @@ function Calculator() {
     let tempTrigger = false;
     let lastOperation = [];
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-    let result;
+    let result = 0;
 
     for (let btn of buttons) {
         btn.addEventListener("click", function () {
@@ -16,6 +16,12 @@ function Calculator() {
                 screen.textContent = '';
                 trigger = false;
             }
+            if (btn.classList.contains('hero')) {
+                trigger = true;
+                tempTrigger = true;
+            }
+
+            console.log(memory, tempMemory);
 
             if (btn.textContent === 'C') {
                 screen.textContent = '';
@@ -24,29 +30,26 @@ function Calculator() {
             } else if (btn.classList.contains('btn-equals')) {
                 result = getResult(lastOperation, tempMemory, memory, result, screen);
                 screen.textContent = result;
+                tempMemory = '';
+                memory = result;
             } else {
                 if (numbers.includes(Number(btn.textContent)) && tempTrigger) {
-                    tempMemory += (btn.textContent);
-                    tempTrigger = false;
+                    tempMemory += (btn.textContent.toString());
                 } else if (numbers.includes(Number(btn.textContent)) && !tempTrigger) {
-                    memory += (btn.textContent);
+                    memory += (btn.textContent.toString());
                 } else {
                     lastOperation.push(btn.textContent);
                 }
                 screen.textContent += btn.textContent;
             }
-            if (btn.classList.contains('hero')) {
-                trigger = true;
-                tempTrigger = true;
-            }
         });
     }
- 
+
     console.log(memory);
     console.log(tempMemory);
 
     function getResult(lastOperation, tempMemory, memory, result, screen) {
-        lastOperation.pop();
+        // lastOperation.pop();
         screen.textContent = '';
 
         // for (let i=lastOperation.length-1; i<=0; i--) {
@@ -63,7 +66,7 @@ function Calculator() {
         //         break;
         // }
 
-        result = Number(memory)+Number(tempMemory);
+        result = Number(memory) + Number(tempMemory);
         return result;
     }
 }
