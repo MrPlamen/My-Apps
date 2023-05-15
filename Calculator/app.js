@@ -34,6 +34,8 @@ function Calculator() {
                 console.log(lastOperation);
                 tempMemory = '';
                 memory = result;
+                trigger = false;
+                tempTrigger = false;
             } else {
                 if (numbers.includes(Number(btn.textContent)) && tempTrigger) {
                     tempMemory += (btn.textContent.toString());
@@ -53,21 +55,15 @@ function Calculator() {
         lastOperation.pop();
         screen.textContent = '';
 
-        // for (let i=lastOperation.length-1; i<=0; i--) {
-        //     if (!numbers.includes(lastOperation[i])) {
-        //         lastOperation = lastOperation[i];
-        //         break;
-        //     }
-        // }
+        switch (lastOperation.pop()) {
+            case '+':
+                result = Number(memory) + Number(tempMemory);
+            case '-':
+                result = Number(memory) - Number(tempMemory);
+            default:
+                break;
+        }
 
-        // switch (lastOperation) {
-        //     case '+':
-        //         return 666;
-        //     default:
-        //         break;
-        // }
-
-        result = Number(memory) + Number(tempMemory);
         return result;
     }
 }
