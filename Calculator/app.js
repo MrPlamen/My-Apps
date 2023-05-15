@@ -19,6 +19,7 @@ function Calculator() {
             if (btn.classList.contains('hero')) {
                 trigger = true;
                 tempTrigger = true;
+                lastOperation.push(btn.textContent);
             }
 
             console.log(memory, tempMemory);
@@ -30,16 +31,16 @@ function Calculator() {
             } else if (btn.classList.contains('btn-equals')) {
                 result = getResult(lastOperation, tempMemory, memory, result, screen);
                 screen.textContent = result;
+                console.log(lastOperation);
                 tempMemory = '';
                 memory = result;
             } else {
                 if (numbers.includes(Number(btn.textContent)) && tempTrigger) {
                     tempMemory += (btn.textContent.toString());
-                } else if (numbers.includes(Number(btn.textContent)) && !tempTrigger) {
+                } 
+                if (numbers.includes(Number(btn.textContent)) && !tempTrigger) {
                     memory += (btn.textContent.toString());
-                } else {
-                    lastOperation.push(btn.textContent);
-                }
+                } 
                 screen.textContent += btn.textContent;
             }
         });
@@ -49,7 +50,7 @@ function Calculator() {
     console.log(tempMemory);
 
     function getResult(lastOperation, tempMemory, memory, result, screen) {
-        // lastOperation.pop();
+        lastOperation.pop();
         screen.textContent = '';
 
         // for (let i=lastOperation.length-1; i<=0; i--) {
