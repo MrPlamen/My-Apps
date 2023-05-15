@@ -22,8 +22,7 @@ function Calculator() {
                 memory = '';
                 tempMemory = '';
             } else if (btn.classList.contains('btn-equals')) {
-                getResult(lastOperation, tempMemory, memory, result, screen);
-                console.log(Number(memory)+Number(tempMemory));
+                result = getResult(lastOperation, tempMemory, memory, result, screen);
                 screen.textContent = result;
             } else {
                 if (numbers.includes(Number(btn.textContent)) && tempTrigger) {
@@ -31,8 +30,6 @@ function Calculator() {
                     tempTrigger = false;
                 } else if (numbers.includes(Number(btn.textContent)) && !tempTrigger) {
                     memory += (btn.textContent);
-                    // console.log(memory);
-                    // console.log(tempMemory);
                 } else {
                     lastOperation.push(btn.textContent);
                 }
@@ -59,12 +56,15 @@ function Calculator() {
         //     }
         // }
 
-        switch (lastOperation) {
-            case '+':
-                return 666;
-            default:
-                break;
-        }
+        // switch (lastOperation) {
+        //     case '+':
+        //         return 666;
+        //     default:
+        //         break;
+        // }
+
+        result = Number(memory)+Number(tempMemory);
+        return result;
     }
 }
 
