@@ -6,8 +6,9 @@ function Calculator() {
     let tempMemory = '';
     let trigger = false;
     let tempTrigger = false;
+    let negative = false;
     let lastOperation = [];
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
     let result = 0;
 
     for (let btn of buttons) {
@@ -37,12 +38,12 @@ function Calculator() {
                 trigger = false;
                 tempTrigger = false;
             } else {
-                if (numbers.includes(Number(btn.textContent)) && tempTrigger) {
+                if (numbers.includes(btn.textContent) && tempTrigger) {
                     tempMemory += (btn.textContent.toString());
-                } 
-                if (numbers.includes(Number(btn.textContent)) && !tempTrigger) {
+                }
+                if (numbers.includes(btn.textContent) && !tempTrigger) {
                     memory += (btn.textContent.toString());
-                } 
+                }
                 screen.textContent += btn.textContent;
             }
         });
@@ -54,12 +55,22 @@ function Calculator() {
     function getResult(lastOperation, tempMemory, memory, result, screen) {
         lastOperation.pop();
         screen.textContent = '';
+        numberOne = Number(memory);
+        numberTwo = Number(tempMemory);
 
         switch (lastOperation.pop()) {
             case '+':
-                result = Number(memory) + Number(tempMemory);
+                result = numberOne + numberTwo;
+                break;
             case '-':
-                result = Number(memory) - Number(tempMemory);
+                result = numberOne - numberTwo;
+                break;
+            case 'X':
+                result = numberOne * numberTwo;
+                break;
+            case '÷':
+                result = numberOne / numberTwo;
+                break;
             default:
                 break;
         }
