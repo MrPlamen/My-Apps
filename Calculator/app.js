@@ -23,8 +23,6 @@ function Calculator() {
                 lastOperation.push(btn.textContent);
             }
 
-            console.log(memory, tempMemory);
-
             if (btn.textContent === 'C') {
                 screen.textContent = '';
                 memory = '';
