@@ -47,9 +47,6 @@ function Calculator() {
         });
     }
 
-    console.log(memory);
-    console.log(tempMemory);
-
     function getResult(lastOperation, tempMemory, memory, result, screen) {
         lastOperation.pop();
         screen.textContent = '';
