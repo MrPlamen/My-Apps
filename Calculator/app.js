@@ -74,5 +74,4 @@ function Calculator() {
     }
 }
 
-
-
+Calculator();
