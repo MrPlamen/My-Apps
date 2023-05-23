@@ -4,7 +4,9 @@ function Calculator() {
     const screen = document.getElementById('calc-screen');
     let memory = '';
     let tempMemory = '';
-
+    let trigger = false;
+    let tempTrigger = false;
+    let negative = false;
     let lastOperation = [];
     const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
     let result = 0;
