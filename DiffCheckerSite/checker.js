@@ -3,7 +3,7 @@ function diffChecker() {
     const comparedText = document.getElementById('compared-text');
     const submitBtn = document.getElementById('submit-btn');
 
-
+    submitBtn.addEventListener("click", compareTexts);
 
     function compareTexts(event) {
         let textOne = originalText.textContent;
