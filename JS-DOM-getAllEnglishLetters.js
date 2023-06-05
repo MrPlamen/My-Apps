@@ -6,5 +6,5 @@ function getAllEnglishLetters() {
   
     return filteredElements;
   }
-  
 
+console.log(getAllEnglishLetters());
